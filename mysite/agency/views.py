@@ -3,7 +3,8 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the agency index.")
+    # return HttpResponse("Hello, world. You're at the agency index.")
+    return render(request, 'agency/index.html')
 
 
 def profile(request):
@@ -11,9 +12,9 @@ def profile(request):
     return render(request, 'agency/profile.html')
 
 
-def festival(request):
+def festivals(request):
     # return HttpResponse("Your festival is here.")
-    return render(request, 'agency/festival.html')
+    return render(request, 'agency/festivals.html')
 
 
 def tickets(request):
@@ -22,7 +23,8 @@ def tickets(request):
 
 
 def genres(request):
-    return HttpResponse("Your genres are here.")
+    # return HttpResponse("Your genres are here.")
+    return render(request, 'agency/genres.html')
 
 
 def instrumets(request):
