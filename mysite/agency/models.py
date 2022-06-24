@@ -1,6 +1,7 @@
-from tkinter import CASCADE
+import datetime
+from django.urls import reverse
 from django.db import models
-# from django.utils import timezone
+from django.utils import timezone
 
 
 class Genre(models.Model):
@@ -11,7 +12,7 @@ class Genre(models.Model):
 
 
 class Festival(models.Model):
-    music_genre = models.ForeignKey(Genre, on_delete=CASCADE)
+    music_genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     code = models.IntegerField(default=0)
     name = models.CharField(max_length=35, unique=True, blank=False)
     city = models.CharField(max_length=35)
@@ -27,15 +28,15 @@ class Sponsor(models.Model):
 class Concert(models.Model):
     number = models.IntegerField(default=0)
     name = models.CharField(max_length=35)
-    scene_name = models.CharField(max_length=35)
+    scene_name = models.CharField(max_length=35, blank=True, default="")
     location = models.CharField(max_length=35)
     time_start = models.DateField()
     time_end = models.TimeField()
 
 
 class Concert_on_festival(models.Model):
-    festival_id = models.ForeignKey(Festival, on_delete=CASCADE)
-    concert_id = models.ForeignKey(Concert, on_delete=CASCADE)
+    festival_id = models.ForeignKey(Festival, on_delete=models.CASCADE)
+    concert_id = models.ForeignKey(Concert, on_delete=models.CASCADE)
 
 
 class Ticket(models.Model):
@@ -48,8 +49,8 @@ class Ticket(models.Model):
 
 
 class Ticket_for_concert(models.Model):
-    ticket_id = models.ForeignKey(Ticket, on_delete=CASCADE)
-    concert_id = models.ForeignKey(Concert, on_delete=CASCADE)
+    ticket_id = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    concert_id = models.ForeignKey(Concert, on_delete=models.CASCADE)
 
 
 # class Scene(models.Model):
@@ -60,7 +61,7 @@ class Ticket_for_concert(models.Model):
 
 
 class Band(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, default="")
     name = models.CharField(max_length=35)
     name_of_leader = models.CharField(max_length=35)
     number_of_artists = models.IntegerField(default=0)
@@ -68,8 +69,8 @@ class Band(models.Model):
 
 
 class Artist(models.Model):
-    band_id = models.ForeignKey(Band, on_delete=CASCADE)
-    genre_id = models.ForeignKey(Genre, on_delete=CASCADE)
+    band_id = models.ForeignKey(Band, on_delete=models.CASCADE, blank=True, null=True)
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE, blank=True, null=True)
     nickname = models.CharField(max_length=25, unique=True, default="")
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=35)
@@ -85,8 +86,8 @@ class Instrument(models.Model):
 
 
 class Genre_and_intruments(models.Model):
-    genre_id = models.ForeignKey(Genre, on_delete=CASCADE)
-    intrument_id = models.ForeignKey(Instrument, on_delete=CASCADE)
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    intrument_id = models.ForeignKey(Instrument, on_delete=models.CASCADE)
 
 
 class Client(models.Model):
