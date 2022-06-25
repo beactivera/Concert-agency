@@ -136,11 +136,11 @@ def festival_list(request):
 def genre_list(request):
     genre_list = Genre.objects.all()
     instruments_genre_list = Genre_and_intruments.objects.all()
-    return render(request, 'agency/genre.html', {'genre_list': genre_list, 'instruments_genre_list': instruments_genre_list})
+    return render(request, 'agency/genres.html', {'genre_list': genre_list, 'instruments_genre_list': instruments_genre_list})
 
 
 def ticket_list(request):
     ticket_list = Ticket.objects.all()
     concert_ticket_list = Ticket_for_concert.objects.all()
-    return render(request, 'agency/ticket.html', {'ticket_list': ticket_list, 'concert_ticket_list': concert_ticket_list})
+    return render(request, 'agency/tickets.html', {'ticket_list': ticket_list, 'concert_ticket_list': concert_ticket_list})
     pass
