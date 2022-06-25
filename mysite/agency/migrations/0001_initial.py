@@ -39,8 +39,7 @@ class Migration(migrations.Migration):
                 ('number', models.IntegerField(default=0)),
                 ('name', models.CharField(max_length=35)),
                 ('location', models.CharField(max_length=35)),
-                ('time_start', models.DateField()),
-                ('time_end', models.TimeField()),
+                ('date', models.DateField()),
             ],
         ),
         migrations.CreateModel(

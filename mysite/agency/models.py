@@ -30,8 +30,7 @@ class Concert(models.Model):
     name = models.CharField(max_length=35)
     scene_name = models.CharField(max_length=35, blank=True, default="")
     location = models.CharField(max_length=35)
-    time_start = models.DateField()
-    time_end = models.TimeField()
+    date = models.DateField()
 
 
 class Concert_on_festival(models.Model):
