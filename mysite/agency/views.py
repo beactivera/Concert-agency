@@ -8,14 +8,19 @@ from django.contrib.auth.models import User
 
 def index(request):
     # return HttpResponse("Hello, world. You're at the agency index.")    
-    # return render(request, 'agency/index.html')
-    username = request.user.username
-    try:
-        user_logged_in = Client.objects.get(login=username)
-    except(Client.DoesNotExist):
-        return HttpResponse("Client does not exist!")
-    else:
-        return render(request, 'agency/index.html')
+    return render(request, 'agency/index.html')
+    # username = request.user.username
+    # try:
+    #     user_logged_in = Client.objects.get(login=username)
+    # except(Client.DoesNotExist):
+    #     # return HttpResponse("Client does not exist!")
+    #     return render(request, 'agency/index.html')
+    # else:
+    #     mainpage()
+
+
+# def mainpage(request):
+#     return render(request, 'agency/mainpage.html')
 
 
 def profile(request):

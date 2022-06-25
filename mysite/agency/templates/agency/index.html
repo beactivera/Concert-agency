@@ -6,23 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONCERT AGENCY</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'agency/index_style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'agency/index_style.css' %}"> -->
+ <style>
+    *{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    }
+
+    body{
+        background-color: rosybrown;
+    }
+
+    nav #menu {
+        position: fixed;
+        list-style-type: none;
+    }
+
+
+    #menu ul {
+        list-style-type: none;
+        margin: 500px;
+        padding: 0;
+        background-color: #333333;
+    }
+    
+    #menu li {
+        float: left;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    
+    #menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 40px;
+        text-decoration: none;
+    }
+
+    h2{
+        display: block;
+        padding: 150px;
+        padding-bottom: 100px;
+        text-align: center;
+        font-size: 60px;
+    }
+
+    .main-content{
+        display: block;
+        padding: 80px;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .content{
+        display: block;
+        padding: 10px;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .signed a {
+        display: block;
+        text-decoration: none;
+        color:aquamarine;
+        padding: 15px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .signed span {
+        display: block;
+        text-decoration: none;
+        color: darkorchid;
+        margin-top: 20px;
+        padding: 20px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .unsigned a {
+        display: block;
+        text-decoration: none;
+        color:aquamarine;
+        padding: 15px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    footer{
+        position: absolute;
+        bottom: 10px;
+        display:block;
+        color: white;
+        text-align: center;
+    }
+ </style>
 </head>
 <body>
     <nav>
-        <ul>
-            <li id="nav_start"><b>START</b></li>
-            <li id="nav_register">SIGN UP</li>
-            <li id="nav_login">LOG IN</li>
-            <li id="nav_genres">GENRES</li>
-            <li id="nav_festival">FESTIVALS</li>
-            <li id="nav_ticket">TICKETS</li>
+        <ul id="menu">
+            <li id="nav_start"><a href="index.html">START</a></li>
+            <li id="nav_register"><a href="/mysite/agency/templates/registration/signup.html">SIGN UP</a></li>
+            <li id="nav_login"><a href="/mysite/agency/templates/registration/login.html">LOG IN</a></li>
+            <li id="nav_genres"><a href="genres.html">GENRES</a></li>
+            <li id="nav_festival"><a href="festivals.html">FESTIVALS</a></li>
+            <li id="nav_ticket"><a href="tickets.html">TICKETS</a></li>
         </ul>
     </nav>
 
+    <h2> CONCERT AGENCY</h2>
+    <div class="main-content">
+        Here you can find all the information regarding Music, Music Festivals, Tickets and much more!
+    </div>
+
+    <div class="content">
+        If you want to take full advantage of our services, make an account below.
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="signed">
+        <span>Hi {{ user.username }} :)</span>
+        <a href="{% url 'logout' %}">Log Out</a>
+        <a href="{% url 'agency:profile' %}">My account</a>
+    </div>
+
+    {% else %}
+    <div class="unsigned">
+        <a href="{% url 'login' %}">Log In </a>
+        or
+        <a href="{% url 'account:signup' %}"> Sign Up</a>
+    </div>
+    {% endif %}
+
 
     <footer>
-        &copy; Weronika Wdowiak 2022<br>
+        &copy; Weronika Wdowiak 2022
     </footer>
 
 </body>

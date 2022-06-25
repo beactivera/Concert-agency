@@ -1,3 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body{
     background-color: rosybrown;
 }
+
+/* nav #menu {
+    position: fixed;
+    list-style-type: none;
+}
+
+#menu li{
+    float: left;
+}
+
+#nav_start a{
+    text-decoration: none;
+} */
+
+#menu ul {
+    list-style-type: none;
+    margin: 500px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+  }
+  
+#menu li {
+    float: left;
+  }
+  
+#menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+  }

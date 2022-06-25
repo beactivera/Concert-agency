@@ -6,6 +6,7 @@ app_name = 'agency'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    # path('start/', views.mainpage, name='mainpage'),
     path('profile/', views.profile, name='profile'),
     path('profile/delete', views.profile_delete, name='profile_delete'),
     path('profile/delete/result', views.profile_delete_result, name='profile_delete_result'),
