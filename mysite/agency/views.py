@@ -1,15 +1,99 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render, get_list_or_404, redirect
+from .models import *
+from datetime import datetime
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 def index(request):
-    # return HttpResponse("Hello, world. You're at the agency index.")
-    return render(request, 'agency/index.html')
+    # return HttpResponse("Hello, world. You're at the agency index.")    
+    # return render(request, 'agency/index.html')
+    username = request.user.username
+    try:
+        user_logged_in = Client.objects.get(login=username)
+    except(Client.DoesNotExist):
+        return HttpResponse("Client does not exist!")
+    else:
+        return render(request, 'agency/index.html')
 
 
 def profile(request):
     # return HttpResponse("Your profile is here.")
-    return render(request, 'agency/profile.html')
+    # return render(request, 'agency/profile.html')
+    username = request.user.username
+    try:
+        user_logged_in = Client.objects.get(login=username)
+
+    except(Client.DoesNotExist):
+        return HttpResponse("Client does not exist!")
+    else:
+        return render(request, 'agency/profile.html',
+                      {'user_client': user_logged_in})
+
+
+def profile_edit(request):
+    username = request.user.username
+    try:
+        user_logged_in = Client.objects.get(login=username)
+        return render(request, 'agency/profile_edit.html', {'user_client': user_logged_in})
+    except(Client.DoesNotExist):
+        return HttpResponse("Client does not exist!")
+
+
+def profile_edit_result(request):
+    client_list = Client.objects.all()
+    new_login = request.POST["F_login"]
+    curent_user = request.user
+    curent_client = Client.objects.get(login=curent_user.username)
+
+    var = False
+
+    for c in client_list:
+        if c.login == new_login and new_login != curent_user.username:
+            var = True
+
+    if not var:
+        curent_client.name = request.POST['F_name']
+        curent_client.surname = request.POST['F_surname']
+        curent_client.login = request.POST['F_login']
+        curent_client.email = request.POST['F_email']
+        curent_client.phone_number = request.POST['F_phone_number']
+        curent_client.save()
+
+        curent_user.username = request.POST['F_login']
+        curent_user.email = request.POST['F_email']
+        curent_user.first_name = request.POST['F_name']
+        curent_user.last_name = request.POST['F_surname']
+        curent_user.save()
+
+        return redirect(reverse('agency:profile'))
+    else:
+        return render(request, 'agency/profile_edit_result.html', {
+            'error_message': "Login is already in use, try something different!",
+            'user_client': curent_client,
+        })
+
+
+def profile_delete(request):
+    username = request.user.username
+    try:
+        user_logged_in = Client.objects.get(login=username)
+        return render(request, 'agency/profile_delete.html', {'user_client': user_logged_in})
+    except(Client.DoesNotExist):
+        return HttpResponse("Unknown error")
+
+
+def profile_delete_result(request):
+    username = request.user.username
+    try:
+        client_logged_in = Client.objects.get(login=username)
+        user_logged_in = User.objects.get(username=username)
+        client_logged_in.delete()
+        user_logged_in.delete()
+        return render(request, "agency/profile_delete_result.html")
+    except(Client.DoesNotExist or User.DoesNotExist):
+        return HttpResponse("Unknown error")
 
 
 def festivals(request):

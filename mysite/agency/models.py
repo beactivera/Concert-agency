@@ -96,3 +96,16 @@ class Client(models.Model):
     login = models.CharField(max_length=64, unique=True, default="")
     email = models.EmailField(unique=True, blank=False, default="")
     phone_number = models.CharField(max_length=23, unique=True, blank=True)
+
+    def __str__(self):
+        return str(
+            str(self.name) + " " + str(self.surname) + " Tel: " + str(self.phone_number) + " E-mail: " + str(self.email)
+        )
+
+
+    def get_login(self):
+        return self.login
+
+
+    def get_email(self):
+        return self.email

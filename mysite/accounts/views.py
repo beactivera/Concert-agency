@@ -1,5 +1,3 @@
-from django.urls import reverse_lazy
-from django.views import generic
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from agency.models import *
@@ -10,7 +8,7 @@ def register_client(request):
     return render(request, 'registration/signup.html')
 
 
-def register_client_result(request, client):
+def register_client_result(request):
     pass1 = request.POST['F_password']
     pass2 = request.POST['F_password_2']
 
@@ -18,7 +16,7 @@ def register_client_result(request, client):
         loginBoolen = False
         emailBoolen = False
         phoneNumberBoolen = False
-        client_list = client.objects.all()
+        client_list = Client.objects.all()
 
         for c in client_list:
             if c.login == request.POST['F_login']:
@@ -32,7 +30,7 @@ def register_client_result(request, client):
 
         if not loginBoolen and not emailBoolen and not phoneNumberBoolen:
 
-            new_user = client(
+            new_user = Client(
                 name=request.POST['F_name'],
                 surname=request.POST['F_surname'],
                 login=request.POST['F_login'],
