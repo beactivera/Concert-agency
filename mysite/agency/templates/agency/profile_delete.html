@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONCERT AGENCY</title>
+    {% load static %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'agency/profile_delete_style.css' %}"> -->
+ <style>
+    *{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    }
+
+    body{
+        background-color: rosybrown;
+    }
+
+    nav #menu {
+        position: fixed;
+        list-style-type: none;
+    }
+
+
+    #menu ul {
+        list-style-type: none;
+        margin: 500px;
+        padding: 0;
+        background-color: #333333;
+    }
+    
+    #menu li {
+        float: left;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    
+    #menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 40px;
+        text-decoration: none;
+    }
+    
+    .color_scheme_1 {
+        background-color: rgb(255, 255, 255, 0.9);
+        width: 60%;
+        font-size: calc(25px + 1vh);
+        color: rgb(25, 27, 179);;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px 30px 10px 30px;
+    }
+
+    .link_div{
+        background-color: rgb(25, 27, 179);
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .link_div a{
+        color: white;
+        text-decoration: none;
+    }
+
+    footer{
+        position: absolute;
+        bottom: 10px;
+        display:block;
+        color: white;
+        text-align: center;
+    }
+ </style>
+</head>
+<body>
+    <!-- <nav>
+        <ul id="menu">
+            <li id="nav_start"><a href="index.html">START</a></li>
+            <li id="nav_register"><a href="/mysite/agency/templates/registration/signup.html">SIGN UP</a></li>
+            <li id="nav_login"><a href="/mysite/agency/templates/registration/login.html">LOG IN</a></li>
+            <li id="nav_genres"><a href="genres.html">GENRES</a></li>
+            <li id="nav_festival"><a href="festivals.html">FESTIVALS</a></li>
+            <li id="nav_ticket"><a href="tickets.html">TICKETS</a></li>
+        </ul>
+    </nav> -->
+
+    <div class="color_scheme_1" style="margin-top: calc(50px + 9vh); text-align: center">
+        Are you sure you want to delete your account?<br>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap">
+            <div class="link_div">
+                <a href="{% url 'agency:profile_delete_result' %}">Yes delete my account</a>
+            </div>
+            <div class="link_div">
+                <a href="{% url 'agency_service:profile' %}">No. take me back to my account</a>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        &copy; Weronika Wdowiak 2022
+    </footer>
+
+</body>
+</html>
