@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONCERT AGENCY</title>
+    {% load static %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'agency/profile_style.css' %}"> -->
+ <style>
+    *{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    }
+
+    body{
+        background-color: rosybrown;
+    }
+
+    nav #menu {
+        position: fixed;
+        list-style-type: none;
+    }
+
+
+    #menu ul {
+        list-style-type: none;
+        margin: 500px;
+        padding: 0;
+        background-color: #333333;
+    }
+    
+    #menu li {
+        float: left;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    
+    #menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 40px;
+        text-decoration: none;
+    }
+
+    .color_scheme_1 {
+        background-color: rgb(255, 255, 255, 0.9);
+        width: 60%;
+        font-size: calc(25px + 1vh);
+        color: rgb(25, 27, 179);;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px 30px 10px 30px;
+    }
+
+    .user_data_row{
+        display: flex;
+        flex-wrap: wrap;
+        font-size: calc(15px + 1vh);;
+        margin: 10px 0 10px 0;
+    }
+
+    .data_column{
+        width: 30vw;
+    }
+
+    footer{
+        position: absolute;
+        bottom: 10px;
+        display:block;
+        color: white;
+        text-align: center;
+    }
+ </style>
+</head>
+<body>
+    <nav>
+        <ul id="menu">
+            <li id="nav_start"><a href="index.html">START</a></li>
+            <li id="nav_register"><a href="/mysite/agency/templates/registration/signup.html">SIGN UP</a></li>
+            <li id="nav_login"><a href="/mysite/agency/templates/registration/login.html">LOG IN</a></li>
+            <li id="nav_genres"><a href="genres.html">GENRES</a></li>
+            <li id="nav_festival"><a href="festivals.html">FESTIVALS</a></li>
+            <li id="nav_ticket"><a href="tickets.html">TICKETS</a></li>
+        </ul>
+    </nav>
+
+    <div class="color_sheme1" style="margin-top: calc(50px + 9vh)">
+        <div>
+            <strong>{{user_client.name}} {{user_client.surname}} account:</strong>
+        </div>
+        <div class="user_data_row">
+            <div class="data_column">
+                Name:
+            </div>
+            <div>
+                {{ user_client.name }}
+            </div>
+        </div>
+        <div class="user_data_row">
+            <div class="data_column">
+                Surname:
+            </div>
+            <div>
+                {{ user_client.surname }}
+            </div>
+        </div>
+        <div class="user_data_row">
+            <div class="data_column">
+                Login:
+            </div>
+            <div>
+                {{ user_client.login }}
+            </div>
+        </div>
+        <div class="user_data_row">
+            <div class="data_column">
+                E-mail:
+            </div>
+            <div>
+                {{ user_client.email }}
+            </div>
+        </div>
+        <div class="user_data_row">
+            <div class="data_column">
+                Phone number:
+            </div>
+            <div>
+                {{ user_client.phone_number }}
+            </div>
+        </div>
+
+        <div style="font-size: 30px; display: flex; justify-content: center; flex-wrap: wrap">
+            <a href="{% url 'electronic_service:profile_edit' %}" style="color: white;
+            background-color: rgb(25, 27, 179); padding: 5px; margin: 5px 5px 5px 5px">Edit your profile</a>
+            <a href="{% url 'password_reset' %}" style="color: white;
+            background-color: rgb(25, 27, 179); padding: 5px; margin: 5px 5px 5px 5px">Change your password</a>
+            <a href="{% url 'electronic_service:profile_delete' %}" style="color: white;
+            background-color: rgb(25, 27, 179); padding: 5px; margin: 5px 5px 5px 5px">Delete your account</a>
+        </div>
+
+
+    <footer>
+        &copy; Weronika Wdowiak 2022
+    </footer>
+
+</body>
+</html>
