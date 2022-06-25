@@ -101,28 +101,46 @@ def profile_delete_result(request):
         return HttpResponse("Unknown error")
 
 
-def festivals(request):
-    # return HttpResponse("Your festival is here.")
-    return render(request, 'agency/festivals.html')
+# def festivals(request):
+#     # return HttpResponse("Your festival is here.")
+#     return render(request, 'agency/festivals.html')
 
 
-def tickets(request):
-    # return HttpResponse("Your tickets are here.")
-    return render(request, 'agency/tickets.html')
+# def tickets(request):
+#     # return HttpResponse("Your tickets are here.")
+#     return render(request, 'agency/tickets.html')
 
 
-def genres(request):
-    # return HttpResponse("Your genres are here.")
-    return render(request, 'agency/genres.html')
+# def genres(request):
+#     # return HttpResponse("Your genres are here.")
+#     return render(request, 'agency/genres.html')
 
 
-def instrumets(request):
-    return HttpResponse("Your instruments are here.")
+# def instrumets(request):
+#     return HttpResponse("Your instruments are here.")
 
 
-def concerts(request):
-    return HttpResponse("Your concerts are here.")
+# def concerts(request):
+#     return HttpResponse("Your concerts are here.")
 
 
-def artists(request):
-    return HttpResponse("Your artists are here.")
+# def artists(request):
+#     return HttpResponse("Your artists are here.")
+
+def festival_list(request):
+    festival_list = Festival.objects.all()
+    concert_festival_list = Concert_on_festival.objects.all()
+    return render(request, 'agency/festivals.html', {'festival_list': festival_list, 'concert_festival_list': concert_festival_list})
+
+
+def genre_list(request):
+    genre_list = Genre.objects.all()
+    instruments_genre_list = Genre_and_intruments.objects.all()
+    return render(request, 'agency/genre.html', {'genre_list': genre_list, 'instruments_genre_list': instruments_genre_list})
+
+
+def ticket_list(request):
+    ticket_list = Ticket.objects.all()
+    concert_ticket_list = Ticket_for_concert.objects.all()
+    return render(request, 'agency/ticket.html', {'ticket_list': ticket_list, 'concert_ticket_list': concert_ticket_list})
+    pass
